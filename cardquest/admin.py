@@ -10,7 +10,7 @@ admin.site.register (Collection)
 
 
 
-@admin.register(PokemonCard)
-class PokemonAdmin(admin.ModelAdmin):
-    list_display = ("name", "rarity")
-    search_fields = ("name",)
+# @admin.register(PokemonCard)
+# class PokemonAdmin(admin.ModelAdmin):
+#     list_display = ("name", "rarity")
+#     search_fields = ("name",)
