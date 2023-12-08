@@ -11,26 +11,118 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+    <style>
+        .home {
+          display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center; 
+        }
 
+        /* .pokemon-image {
+          order: -1;
+          width: 199%;
+          height: auto;
+          margin-bottom: 20px;
+        } */
+        .base {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            padding: 20px;
+            text-align: center; 
+        }
+
+        #image-form {
+            display: inline-block;
+
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #changing-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+
+    </style>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const images = [
+
+        "{% static 'images/pikachu.png' %}",
+        "{% static 'images/snorlax.png' %}",
+        "{% static 'images/eevee.png' %}",
+        "{% static 'images/gandevoir.png' %}",
+        "{% static 'images/bulbasur.png' %}",
+        "{% static 'images/pokemon1.png' %}",
+        "{% static 'images/pokemon2.png' %}",
+        "{% static 'images/pokemon3.png' %}",
+        
+    ];
+
+    let currentIndex = 0;
+    const imgElement = document.getElementById("changing-image");
+
+    function changeImage(index) {
+        currentIndex = (index + images.length) % images.length;
+        imgElement.src = images[currentIndex];
+    }
+
+    const imageWidth = 300;
+    const imageHeight = 300; 
+    imgElement.style.width = `${imageWidth}px`;
+    imgElement.style.height = `${imageHeight}px`;
+
+    setInterval(() => changeImage(currentIndex + 1), 1000);
+
+   
+});
+
+    </script>
     <title>{% block title %} CardQuest Master {% endblock %}</title>
   </head>
   <body>
     <!--NAVBAR-->
     <section class="navbar">
+     
+      <a href="{% url 'home' %}" class="btn" id="active"> Home </a>
       <a href="{% url 'trainer-list'%}" class="btn"> Trainer</a> 
-      <a href="home.html" class="btn" id="active"> Home </a>
-      <a href="trainer.html" class="btn"> Trainer </a>
-      <a href="pokemon-card.html" class="btn"> Pokemon Card </a>
-      <a href="collection.html" class="btn"> Collection </a>
+      <a href="{% url 'card' %}" class="btn"> Pokemon Card </a>
+      <a href="{% url 'collection' %}" class="btn"> Collection </a>
     </section>
 
     <!--CONTENT-->
     <main>
       {% block content %}
+    <div class="base">
+      <div class="home">
+        <img
+          src="{% static 'images/title.png' %}"
+          alt="pokemon"
+          class="pokemon-image"
+          style="width: 250px; height: 250px;"  
+        />
+          <h1>Welcome To The World of Pokemon</h1>
+          <h3>"Snorlax is just a big and sleepier Munchlax"</h3>
+       
+      </div>
+    <form id="image-form">
 
+        <img id="changing-image" src="{% static 'images/pikachu.png' %}" alt="pokemon">
+     
+    </form>
+    </div>
+       
       {% endblock %}
     </main>
     {%include 'includes/footer.html' %}
 
   </body>
 </html>
+

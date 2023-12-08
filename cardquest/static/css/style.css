@@ -21,6 +21,10 @@
     padding-bottom: 60px; /* Adjust as needed */
   }
   
+  .home img{
+    width: 200px;
+    height: 150px;
+  }
   /*NAVBAR*/
   .navbar {
     background-color: red;
