@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+    <title>{% block title %} Pokemon | Pokemon Card {% endblock %}</title>
+  </head>
+  <body>
+
+    <main>
+      {% block content %}
+      <a href="{% url 'pokemoncards-add' %}"><button class="button">Add New Pokemon</button></a><br>
+      <section class="cards-container">
+        {% for object in object_list %}
+          <div class="card-box">
+            <div class="card">
+              <div class="card-type" id="{{object.card_type|lower}}">
+                <div class="card-image" id="{{object.card_type|lower}}-img">
+                  <img
+                    src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{ object.card_number|stringformat:'03d' }}.png"
+                    alt="{{object.name}}"
+                  />
+                </div>
+                <div class="card-name">
+                  <h2 class="sbs">{{object.name}}</h2>
+                  <h2 class="sbs" id="card-number">#00{{object.card_number}}</h2>
+                  <hr />
+                </div>
+                <div class="card-rarity">
+                  <h3 class="rarity">Rarity:</h3>
+                  <h3 class="rarity" id="rare-text">{{object.rarity}}</h3>
+                </div>
+                <table class="card-stats">
+                  <tbody>
+                    <tr>
+                      <th>HP:</th>
+                      <td>{{object.hp}}</td>
+                    </tr>
+                    <tr>
+                      <th>Card Type:</th>
+                      <td>{{object.card_type}}</td>
+                    </tr>
+                    <tr>
+                      <th>Attack:</th>
+                      <td>{{object.attack}}</td>
+                    </tr>
+                    <tr>
+                      <th>Description:</th>
+                      <td>{{object.description}}</td>
+                    </tr>
+                    <tr>
+                      <th>Weakness:</th>
+                      <td>{{object.weakness}}</td>
+                    </tr>
+                    <tr>
+                      <th>Abilities:</th>
+                      <td>{{object.abilities}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <td>
+                <a href="pokemoncards_list/{{ object.id }}"><button class="button-edit">Edit</button></a> |
+                <a  href="pokemoncards_list/{{ object.id }}/delete" ><button class="button-del">Delete</button></a>
+              </td>
+          </div>
+        {% empty %}
+        {% endfor %}
+    </section>
+    <div>
+    {% include 'includes/pagination.html' %}
+    </div> 
+   {% endblock %}
+    </main>
+  </body>
+</html>

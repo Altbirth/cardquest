@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+    <title>{% block title %} Pokemon | Trainers Add {% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+    <div class="container">
+      <div class="form-container">
+        <form role="form" method="post" novalidate>
+            {% csrf_token %}
+                {% include 'includes/form.html' %}
+            <div class="form-group">
+                <div class="">
+                    <button type='submit' class="button-add">Submit</button>
+                </div>
+            </div>
+        </form>
+        <a href="{% url 'trainer-list' %}"><button class="button-edited">Return</button></a>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

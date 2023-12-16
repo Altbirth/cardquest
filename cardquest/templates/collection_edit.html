@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+    <title>{% block title %} Pokemon | Collection Update {% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+    
+    <div class="container">
+      <div class="form-container">
+        <form role="form" method="post" novalidate>
+            {% csrf_token %}
+                {% include 'includes/form.html' %}
+            <div class="form-group">
+                <div class="col-md-12 col-sm-3">
+                    <button type='submit' class="button-add">Submit</button>
+                </div>
+            </div>
+        </form>
+        <a href="{% url 'collection-list' %}"><button class="button-edited">Return</button></a>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>
