@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
 
-    <title>{% block title %} Pokemon | Pokemon Card {% endblock %}</title>
+    <title>{% block title %} Pokemon Card {% endblock %}</title>
   </head>
   <body>
 
@@ -61,13 +61,16 @@
                       <td>{{object.abilities}}</td>
                     </tr>
                   </tbody>
+                  <div class = "center">
+                    <td>
+                        <a href="pokemoncards_list/{{ object.id }}"><button class="button-edit">Edit</button></a> |
+                      <a  href="pokemoncards_list/{{ object.id }}/delete" ><button class="button-del">Delete</button></a>
+                    </td>
+                </div>
                 </table>
               </div>
             </div>
-            <td>
-                <a href="pokemoncards_list/{{ object.id }}"><button class="button-edit">Edit</button></a> |
-                <a  href="pokemoncards_list/{{ object.id }}/delete" ><button class="button-del">Delete</button></a>
-              </td>
+           
           </div>
         {% empty %}
         {% endfor %}

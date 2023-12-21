@@ -8,12 +8,12 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
 
-    <title>{% block title %} Pokemon | Collection Delete {% endblock %}</title>
+    <title>{% block title %} Collection Delete {% endblock %}</title>
   </head>
   <body>
     {% block content %}
     <div class="container">
-      <div class="form-container ">
+
           <form method="post">
               {% csrf_token %}
               <div>
@@ -22,8 +22,7 @@
               </div>
               <input class="button-add" type="submit" value="Confirm">
           </form>
-          <a href="{% url 'collection-list' %}"><button class="button-edited">Cancel</button></a>
-      </div>
+
     </div>
     {% endblock %}
   </body>

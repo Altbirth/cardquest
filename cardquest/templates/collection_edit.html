@@ -8,13 +8,13 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
 
-    <title>{% block title %} Pokemon | Collection Update {% endblock %}</title>
+    <title>{% block title %} Collection Update {% endblock %}</title>
   </head>
   <body>
     {% block content %}
     
     <div class="container">
-      <div class="form-container">
+  
         <form role="form" method="post" novalidate>
             {% csrf_token %}
                 {% include 'includes/form.html' %}
@@ -24,8 +24,7 @@
                 </div>
             </div>
         </form>
-        <a href="{% url 'collection-list' %}"><button class="button-edited">Return</button></a>
-      </div>
+    
     </div>
     {% endblock %}
   </body>

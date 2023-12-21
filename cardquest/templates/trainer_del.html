@@ -7,12 +7,12 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
 
-    <title>{% block title %} Pokemon | Trainers Delete {% endblock %}</title>
+    <title>Trainers Delete</title>
   </head>
   <body>
     {% block content %}
     <div class="container">
-      <div class="form-container ">
+
           <form method="post">
               {% csrf_token %}
               <div>
@@ -21,8 +21,7 @@
               </div>
               <input class="button-add" type="submit" value="Confirm">
           </form>
-          <a href="{% url 'trainer-list' %}"><button class="button-edited">Cancel</button></a>
-      </div>
+
     </div>
     {% endblock %}
   </body>
